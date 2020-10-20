@@ -1,0 +1,324 @@
+{% extends "base_templ.html" %}
+
+
+{% block pagecontent %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8 offset-md-2 pl-0 pr-0">
+                <div class="text-truncate">
+                    <span class="font-weight-bolder h5">Launched Query : </span> <span class="px-2 text-monospace">{{ q }}</span>
+                </div>
+                {% if scores %}
+                    <form>
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-5 pl-0">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Target</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Target">
+                                </div>
+                            </div>
+                            <div class="col-5 ">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Filters</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Filters">
+                                </div>
+                            </div>
+                            <div class="col-1 d-flex justify-content-end align-items-end">
+                                <button class="btn btn-home mb-3">DISCOVER</a>
+                            </div> 
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% if scores %}
+            <div id="wrapper" class="row">
+                <div id="sidebar-wrapper" class="col-lg-2 overflow-hidden">
+                    <div id="sidebar" class="fill text-truncate">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link font-weight-bold" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <span class="text-bold">Sentiment</span>
+                                    </button>
+                                </h5>
+                                </div>
+                            
+                                <div id="collapseOne" class="collapse show ml-2" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="row m-0">
+                                        <button id="btn-sent-td" type="button" class="btn btn-sidebar" onclick="">
+                                            <p class="text-left mb-0 text-justify"><i class="fas fa-calendar-day fa-lg mr-1"></i> Today</p>
+                                        </button>
+                                    </div>
+                                    <div class="row m-0">
+                                        <button id="btn-sent-7d" type="button" class="btn btn-sidebar" onclick="">
+                                            <div class="d-flex d-flex justify-content-between overflow-hidden"> 
+                                                <p class="text-left mb-0"><i class="fas fa-calendar-week fa-lg mr-1"></i> 7 Days Average</p>
+                                                <div class="text-right register-badge">
+                                                    <span class="badge badge-info text-bold mr-2">Register</span>
+                                                </div>
+                                            </div>    
+                                        </button>
+                                    </div>
+                                    <div class="row m-0">
+                                        <button id="btn-sent-ot" type="button" class="btn btn-sidebar" onclick="">
+                                            <div class="d-flex d-flex justify-content-between overflow-hidden"> 
+                                                <p class="text-left mb-0 text-justify"><i class="fas fa-chart-line fa-lg mr-1"></i> Over Time</p>
+                                                <div class="text-right register-badge">
+                                                    <span class="badge badge-info text-bold mr-2">Register</span>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="row m-0">
+                                        <button id="btn-sent-t10r" type="button" class="btn btn-sidebar" onclick="">
+                                            <div class="d-flex d-flex justify-content-between overflow-hidden"> 
+                                                
+                                                <p class="text-left mb-0 text-justify"><i class="fas fa-retweet fa-lg"></i> Top 10 Retweeted</p>
+                                                <div class="text-right register-badge">
+                                                    <span class="badge badge-info text-bold mr-2">Register</span>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="row m-0">
+                                        <button id="btn-sent-t10l" type="button" class="btn btn-sidebar" onclick="">
+                                            <div class="d-flex d-flex justify-content-between overflow-hidden"> 
+                                                <p class="text-left mb-0 text-justify"><i class="fas fa-heart fa-lg mr-1"></i> Top 10 Liked</p>
+                                                <div class="text-right register-badge">
+                                                    <span class="badge badge-info text-bold mr-2">Register</span>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed text-bold" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Words
+                                    </button>
+                                </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body">
+                                    
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10 pl-3">
+                    <div class="row">
+                            <div id="page-content-wrapper" class="col-10 pl-0">
+                                <div id="charts-container" class="card m-0 mr-3 d-flex">
+                                    <div id="card-avg_1-sent" class="card dash-plots shadow">
+                                        <div class="card-header text-center">
+                                            <span class="h1">Today's Tweets</span>
+                                        </div>
+                                        <div class="row h-100">
+                                            <div class="col-lg-3">
+                                                <div class="card-body w-100 h-100">
+                                                    <canvas id="avg_1_tot_chart" ></canvas>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="card-body h-100">
+                                                    <canvas id="avg_1_neg_pos_chart"></canvas>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="card-body w-100 h-100">
+                                                    <canvas id="avg_1_polar_chart" ></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="font-weight: bold !important; background-color: rgb(70, 7, 7); color: #E9E9EA;">
+                                    ADS HERE
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-4 no-gutters pt-4">
+                    <form method="POST" action="{{ url_for('main.print_scores', auth=auth, host=host, q=q) }}">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col-12 py-1">
+                                <div>
+                                    {{ form.target.label(class='text-monospace')}}
+                                </div>
+                                <div>
+                                    {{ form.target(class='w-100') }}
+                                {% if error %}
+                                        <span class="small" style="color: red">{{ error }}</span>
+                                {% endif %}
+                                {% for e in form.target.errors %}
+                                    <span class="small" style="color: red">{{ e }}</span>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-12 py-1">
+                                <div>
+                                    {{ form.filters.label(class='text-monospace') }}
+                                </div>
+                                <div>
+                                    {{ form.filters(class='w-100') }}
+                                    {% if error %}
+                                            <span class="small" style="color: red">{{ error }}</span>
+                                    {% endif %}
+                                    {% for e in form.filters.errors %}
+                                        <span class="small" style="color: red">{{ e }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-12 py-1">
+                                <div>
+                                    {{ form.submit(class='w-100 btn btn-sm btn-primary text-monospace') }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="pt-3">
+                        <span class="font-weight-light">QUERY GUIDELINES</span>
+                        <div class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at deleniti dicta dignissimos, dolorum ducimus et fugiat, illum in itaque maiores modi mollitia nostrum obcaecati odit provident quaerat quasi quis rem saepe suscipit voluptas voluptatibus! Alias, animi blanditiis corporis cupiditate dolore eos facilis nam odit, officia reiciendis rem, repellat totam?</div>
+                    </div>
+                </div>
+                <div class="col-8 pt-4">
+                    <div class="d-flex justify-content-center">
+                        <i class="fas fa-heart-broken fa-10x" style="color: red"></i>
+                    </div>
+                    <div class="d-flex justify-content-center h1 font-weight-bold">Sorry but we found nothing ... </div>
+                    <div class="d-flex justify-content-center text-monospace">Try to clean your query a bit</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block scripts_private %}
+<script type="text/javascript" src='/static/packages/node_modules/moment/min/moment.min.js'></script>
+<script type="text/javascript" src="/static/packages/node_modules/chart.js/dist/Chart.js"></script>
+<script type="text/javascript" src="/static/packages/visualization_graphs_funcs.js"></script>
+<script type="text/javascript">
+    var route_input = {{ scores | safe }};
+
+    var timeseries_mean_scores = JSON.parse(route_input["d_7_means_by_date"]);
+    var d_7_mean_scores = route_input["d_7_mean_scores"];
+
+
+    function today_sent_charts(){
+        sentiment_all_avg_chart_bars(extract_daily_data(timeseries_mean_scores), document.getElementById('avg_1_neg_pos_chart').getContext('2d'));
+        sentiment_tot_avg_chart_bars(extract_daily_data(timeseries_mean_scores)[2], document.getElementById('avg_1_tot_chart').getContext('2d'));
+        polarity_chart(extract_daily_data(timeseries_mean_scores)[3], document.getElementById('avg_1_polar_chart').getContext('2d'));
+    };
+    function days_7_sent_charts(){
+        sentiment_all_avg_chart_bars(d_7_mean_scores, document.getElementById('avg_7_neg_pos_chart').getContext('2d'));
+        sentiment_tot_avg_chart_bars(d_7_mean_scores[2], document.getElementById('avg_7_tot_chart').getContext('2d'));
+        polarity_chart(d_7_mean_scores[3], document.getElementById('avg_7_polar_chart').getContext('2d'));
+    };
+    function ot_sent_chart(){
+        timeseries_chart(timeseries_mean_scores,document.getElementById('timeseries_sent_chart').getContext('2d'));
+    }
+    function print_chart_bars(id, title){
+            var html ='<div id="card-'+id+'-sent" class="card dash-plots shadow mb-5">';
+                    html+='<div class="card-header text-center">';
+                        html+="<span class='h1'>"+title+"</span>";
+                    html+='</div>';
+                    html+='<div class="row h-100">';
+                        html+='<div class="col-lg-3">';
+                            html+='<div class="card-body w-100 h-100">';
+                                html+='<canvas id="'+id+'_tot_chart" ></canvas>';
+                            html+='</div>';
+                        html+='</div>';
+                        html+='<div class="col-lg-6">';
+                            html+='<div class="card-body h-100">';
+                                html+='<canvas id="'+id+'_neg_pos_chart"></canvas>';
+                            html+='</div>';
+                        html+='</div>';
+                        html+='<div class="col-lg-3">';
+                            html+='<div class="card-body w-100 h-100">';
+                                html+='<canvas id="'+id+'_polar_chart"></canvas>';
+                            html+='</div>';
+                        html+='</div>';
+                    html+='</div>';
+                html+='</div>';
+    return html
+    }
+    function print_chart_timeseries(id,title){
+        var html ='<div id="card-'+id+'-sent" class="card dash-plots shadow mb-5">';
+                html+='<div class="card-header text-center">';
+                    html+="<span class='h1'>"+title+"</span>";
+                html+='</div>';
+                html+='<div class="row h-100">';
+                    html+='<div class="card-body w-100 h-100">';
+                        html+='<canvas id="'+id+'_sent_chart""></canvas>';
+                    html+='</div>'; 
+                html+='</div>';
+    return html
+    }
+    const logged_btns = ['#btn-sent-7d','#btn-sent-ot','#btn-sent-t10r','#btn-sent-t10l']
+    $('#btn-sent-td').prop('disabled',false)
+    {% if host != 'app' %}
+        $('div.register-badge').remove()
+    {% endif %}
+    $("#btn-sent-td").toggleClass("toggled");
+    today_sent_charts()     
+
+
+        
+    
+</script>
+<script type="text/javascript">
+    $("#menu-toggle").click(function(e){
+        e.preventDefault();
+        $("#toggle-icon").toggleClass("fa-rotate-180");
+        $("#menu-toggle").toggleClass("toggled");
+        $("#sidebar-wrapper").toggleClass("nav-closed");
+    });
+    $("#btn-sent-td").click(function(){
+        {% if host == 'client' %}
+            if ($("#card-avg_1-sent").length == 0){ 
+                $("#charts-container").prepend(print_chart_bars(id="avg_1","Today's Tweets"));
+                today_sent_charts();
+            }
+            else{
+                $("#card-avg_1-sent").remove()
+            }
+            $(this).toggleClass("toggled");
+        {% endif %}
+
+    });
+    $("#btn-sent-7d").click(function(){
+        {% if host == 'client' %}
+            if ($("#card-avg_7-sent").length == 0){   
+                $("#charts-container").prepend(print_chart_bars(id="avg_7","Average Sentiment in Past 7 Days"));
+                days_7_sent_charts();
+            }
+            else{
+                $("#card-avg_7-sent").remove()
+            }
+            
+            $(this).toggleClass("toggled");
+        {% endif %}
+    });
+    $("#btn-sent-ot").click(function(){
+        {% if host == 'client' %}
+            if ($("#card-timeseries-sent").length == 0){   
+                $("#charts-container").prepend(print_chart_timeseries(id="timeseries",'Sentiments Over Time'));
+                ot_sent_chart();
+            }
+            else{
+                $("#card-timeseries-sent").remove()
+            }
+            $(this).toggleClass("toggled");
+        {% endif %}
+    })
+</script>
+{% endblock %}

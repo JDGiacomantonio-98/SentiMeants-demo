@@ -1,0 +1,20 @@
+{
+  "name": "sentime_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Chart.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "aos": "^3.0.0-beta.6",
+    "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.3",
+    "moment": "^2.29.0",
+    "owl.carousel": "^2.3.4",
+    "wow.js": "^1.2.2"
+  }
+}

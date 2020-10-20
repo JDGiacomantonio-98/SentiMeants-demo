@@ -1,0 +1,25 @@
+{% extends 'base_templ.html' %}
+
+{% block pagecontent %}
+<div class="container">
+    <form class='shadow' method="POST" action="#">
+        {{ form.hidden_tag() }}
+
+        {{ form.email.label(class='h5 text-justify font-weight-bold') }}
+        <div>
+            {{ form.email(class='form-control') }}
+            {% for e in form.email.errors %}
+                <span style="color: red;">{{ e }}</span>
+            {% endfor %}
+        </div>
+        {{ form.password.label(class='h5 text-justify font-weight-bold') }}
+        <div>
+            {{ form.password(class='form-control')}}
+            {% for e in form.password.errors %}
+                <span style="color: red;">{{ e }}</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="btn btn-lg btn-home w-100 text-justify text-center font-weight-bold mt-3") }}
+    </form>
+</div>
+{% endblock pagecontent %}

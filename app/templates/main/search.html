@@ -1,0 +1,98 @@
+{% extends "base_templ.html" %}
+
+{% block pagecontent %}
+	<form method="POST" action="#">
+		<div class="text-center my-3">
+			<h1>
+				<span class="font-weight-bold">Tell <span style="color: deeppink">#SentiMeant</span> <span style="color: dodgerblue">words</span> or <span style="color: dodgerblue">phrases</span> which define what you are looking for</span>
+			</h1>
+		</div>
+		{{ form.hidden_tag() }}
+		<div class="container">	
+			<div class="row pt-2">
+					<div class="col-6">
+						<div class="mr-5">
+							<div class="row">
+								<div class="my-2">
+									{{ form.target.label(class='h5 text-justify font-weight-bold')}}
+								</div>
+							</div>
+							<div class="row">
+									<div class="input-group input-group-lg">
+											<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+											</div>
+											{{ form.target(class='form-control') }}
+
+									</div>
+								{% if error %}
+										<span class="small" style="color: red">{{ error }}</span>
+								{% endif %}
+								{% for e in form.target.errors %}
+									<span class="small" style="color: red">{{ e }}</span>
+								{% endfor %}
+							</div>
+						<div class="row">
+							<div class="my-2">
+								{{ form.filters.label(class='h5 text-justify font-weight-bold') }}
+							</div>
+						</div>
+							<div class="row">
+								<div class="input-group input-group-lg">
+									<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fas fa-filter"></i></span>
+									</div>
+									{{ form.filters(class='form-control') }}
+								</div>
+								{% if error %}
+										<span class="small" style="color: red">{{ error }}</span>
+								{% endif %}
+								{% for e in form.filters.errors %}
+									<span class="small" style="color: red">{{ e }}</span>
+								{% endfor %}
+							</div>
+							<div class="row d-flex justify-content-center my-4">
+								<div class="mx-5 w-50">
+									<button class='btn btn-lg btn-home w-100 text-justify text-center font-weight-bold' onclick=document.getElementById("discover-btn").click();>
+										{{ form.submit(id="discover-btn",type='hidden',class='') }}
+										<i class="fas fa-flask mx-2"></i>
+										Discover
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="ml-5 my-3">
+								<div  id="src-table" class="card m-0 p-0">
+									<table class="table">
+										<thead>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">First</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<th scope="row">1</th>
+											<td>Mark</td>
+										</tr>
+										<tr>
+											<th scope="row">2</th>
+											<td>Jacob</td>
+										</tr>
+										<tr>
+											<th scope="row">3</th>
+											<td>Larry</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+						</div>
+					</div>
+			</div>
+
+		</div>
+	</form>
+
+{% endblock %}

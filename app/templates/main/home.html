@@ -1,0 +1,65 @@
+{% extends "base_templ.html" %}
+
+{% block pagecontent %}
+	<div class="container">
+		<div class="col-12 mt-5">
+			<h1 class="font-weight-bold" data-aos="fade-in" data-aos-delay="400">Discover People's Opinions, For Any Topic You Like</h1>
+		</div>
+		<div class="col-12 my-3 mb-5">
+			<h2 data-aos="fade-in" data-aos-delay="400">Free Tools for Sentiment Analysis</h2>
+		</div>
+		<div class="row justify-content-center my-5">
+			<div class="my-2 mb-5">
+	
+				<a type="button" id="home-btn-src" class="btn btn-home btn-lg mx-3 mt-3" data-aos="fade-right" data-aos-delay="1350" href="{{ url_for('main.set_host', host='app') }}">
+					<i class="fas fa-search"></i>&nbsp
+					Search Now
+				</a>
+
+				<a type="button" id="home-btn-rgs" class="btn btn-home btn-lg font-weight-bold mx-3 mt-3" data-aos="fade-right" data-aos-delay="1100" href="{{ url_for('auth.sign_up') }}">
+					<i class="fas fa-angle-double-up"></i>&nbsp
+					Sign Up for Additional Features
+				</a>
+			</div>
+		</div>
+		<div class="row my-4">
+				<div class="col-md-4 mt-3" data-aos="fade-in" data-aos-delay="400">
+					<div class="text-center mb-4">
+						<i class="fas fa-search fa-4x"></i>
+					</div>
+					<div class="mb-2 text-center">
+						<span class = "h3 font-weight-bold">Automatic Tweets Search <br></span>
+					</div>
+					<div class="text-center text-justify">
+						<span class = "h4">With a easy to use search system you type your topic of interest and we search the tweets for you</span>
+					</div>
+				</div>
+
+				<div class="col-md-4 mt-3" data-aos="fade-in" data-aos-delay="400">
+					<div class="text-center mb-4">
+						<i class="fas fa-brain fa-4x"></i>
+					</div>
+					<div class="mb-2 text-center">
+						<span class = "h3 font-weight-bold">Fine-Tuned AI<br></span>
+					</div>
+					<div class="text-center text-justify">
+						<span class = "h4">Sentiment Analysis is performed with a ML model trained on more than a million tweets</span>
+					</div>
+
+				</div>
+
+				<div class="col-md-4 mt-3" data-aos="fade-in" data-aos-delay="400">
+					<div class="text-center mb-4">
+						<i class="fas fa-chart-area fa-4x"></i>
+					</div>
+					<div class="mb-2 text-center">
+						<span class = "h3 font-weight-bold">Beautiful Visualizations<br></span>
+					</div>
+					<div class="text-center text-justify">
+						<span class = "h4">Intuitive Charts to visualize Sentiment, Polarity, Keywords and more</span>
+					</div>
+				</div>
+		</div>
+	</div>
+
+{% endblock %}

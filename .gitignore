@@ -1,0 +1,13 @@
+.vscode/settings.json
+sentimeant.code-workspace
+.idea/*
+__pycache__/
+venv/
+miscellaneous
+/app/static/js/node_modules/
+/app/static/packages/node_modules/
+/app/static/packages/package-lock.json
+app/main/methods/ml_model.sav
+app/static/js/package-lock.json
+*/.env
+*/*.db
